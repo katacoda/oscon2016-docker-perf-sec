@@ -1,0 +1,2 @@
+docker stop es
+docker rm es

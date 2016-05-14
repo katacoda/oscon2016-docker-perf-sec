@@ -1,0 +1,11 @@
+# Each blocked syscall is defined at https://github.com/docker/docker/blob/master/docs/security/seccomp.md
+# default.json is a whitelist of all allowed calls.
+
+# 1_chmod.json wouldn't block dangerous calls. Always take default and customise it.
+
+# Make Docker more secure by removing allowed syscalls.
+
+
+docker run --rm -it --security-opt seccomp:default.json benhall/strace chmod 400 /etc/hostname
+
+# What do you think should be removed?
