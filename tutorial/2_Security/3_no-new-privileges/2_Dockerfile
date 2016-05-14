@@ -1,0 +1,5 @@
+FROM benhall/strace-ubuntu:latest
+ADD 2_setuid /setuid
+ADD 2_suid.sh /tmp/suid.sh
+RUN chmod u+s /setuid /tmp/suid.sh
+CMD ["/setuid"]

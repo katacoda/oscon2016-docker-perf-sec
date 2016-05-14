@@ -1,0 +1,4 @@
+FROM benhall/strace-ubuntu:latest
+ADD 1_testnnp /testnnp
+RUN chmod u+s /testnnp
+CMD ["/testnnp"]

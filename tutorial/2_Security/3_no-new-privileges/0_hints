@@ -1,0 +1,10 @@
+# https://github.com/docker/docker/pull/20727
+
+# Build the containers and run the exe. What do you expect to happen?
+# Try with -u 1000 - any difference?
+
+# What does u+s do?
+
+# Can you use strace to block it?
+
+# Can 1.11 protect it with no-new-privileges ?
