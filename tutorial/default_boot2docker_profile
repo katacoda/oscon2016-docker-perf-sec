@@ -1,0 +1,12 @@
+cat /var/lib/boot2docker/profile
+
+EXTRA_ARGS='
+--label provider=virtualbox
+
+'
+CACERT=/var/lib/boot2docker/ca.pem
+DOCKER_HOST='-H tcp://0.0.0.0:2376'
+DOCKER_STORAGE=aufs
+DOCKER_TLS=auto
+SERVERKEY=/var/lib/boot2docker/server-key.pem
+SERVERCERT=/var/lib/boot2docker/server.pem

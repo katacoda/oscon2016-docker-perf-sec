@@ -1,0 +1,24 @@
+Launch Container with Host Networking
+> docker run -it --net=host benhall/iperf iperf -s
+
+On the host, you can do (Caution: boot2docker is not localhost.)
+> iperf -c localhost
+
+Docker cient on host network
+> docker run -it --net=host benhall/iperf iperf -c localhost
+
+
+Docker Network
+> docker network create iperf
+> docker run -it --net=iperf --name network-server benhall/iperf iperf -s
+
+> docker run -it --net=iperf benhall/iperf iperf -c server
+
+
+Docker Links
+> docker run -it --name link-server benhall/iperf iperf -s
+> docker run -it --link link-server:server benhall/iperf iperf -c server
+
+Shared Network Namespace
+> docker run -it --name shared-server benhall/iperf iperf -s
+> docker run -it --net=container:shared-server benhall/iperf iperf -c server

@@ -1,0 +1,17 @@
+# Ensure your daemon is running via AUFS
+# docker info
+  # Storage Driver: aufs
+
+docker run -it -v /data-mapped:/data-mapped benhall/ioperf-example bash
+
+WRITE SPEED
+dd if=/dev/zero of=/data-mapped/largefile bs=1M count=1024
+dd if=/dev/zero of=/data/largefile bs=1M count=1024
+dd if=/dev/zero of=/data-notmapped/largefile bs=1M count=1024
+
+
+READ SPEED
+
+dd if=/data/large of=/dev/null bs=4k
+dd if=/data-mapped/large of=/dev/null bs=4k
+dd if=/data-notmapped/large of=/dev/null bs=4k

@@ -1,0 +1,17 @@
+apt-get install redis-server -y
+docker pull redis:2.8
+
+redis-benchmark -h localhost -t ping,set,get -n 10000 --csv
+
+docker run -p 6379:6379 redis:2.8
+redis-benchmark -h localhost -t ping,set,get -n 10000 --csv
+
+
+docker run --net=host redis:2.8
+redis-benchmark -h localhost -t ping,set,get -n 10000 --csv
+
+docker run -it --link redis:redis redis:2.8 bash
+
+docker network create redis
+docker run --name redis --net=redis redis:3.2
+docker run -it --net=redis redis:3.2 bash

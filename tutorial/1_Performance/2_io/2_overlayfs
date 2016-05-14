@@ -1,0 +1,35 @@
+# Ensure your daemon is running via AUFS
+# Change storage driver "--storage-driver=overlay" at the Daemon Level
+# docker-machine ssh default
+# sudo su
+# cp /var/lib/boot2docker/profile /var/lib/boot2docker/profile.bak
+# echo "DOCKER_STORAGE=overlay" >> /var/lib/boot2docker/profile
+# sed -i 's/^\(DOCKER_STORAGE=\).*/\1overlay/' /var/lib/boot2docker/profile
+# sudo /etc/init.d/docker restart
+
+# NOTE: This will look like all your images have disappeared. They still exist.
+# Restore to AUFS via
+# sed -i 's/^\(DOCKER_STORAGE=\).*/\1aufs/' /var/lib/boot2docker/profile
+
+# docker info
+  # Storage Driver: overlay
+
+docker run --name ioperf -it -v /data-mapped:/data-mapped benhall/ioperf-example bash
+
+WRITE SPEED
+dd if=/dev/zero of=/data-mapped/largefile bs=1M count=1024
+dd if=/dev/zero of=/data/largefile bs=1M count=1024
+dd if=/dev/zero of=/data-notmapped/largefile bs=1M count=1024
+
+
+READ SPEED
+dd if=/data/large of=/dev/null bs=4k
+dd if=/data-mapped/large of=/dev/null bs=4k
+dd if=/data-notmapped/large of=/dev/null bs=4k
+
+
+
+# Switch back to AUFS!
+docker rm -f -v ioperf
+docker rmi benhall/ioperf-example
+sed -i 's/^\(DOCKER_STORAGE=\).*/\1aufs/' /var/lib/boot2docker/profile

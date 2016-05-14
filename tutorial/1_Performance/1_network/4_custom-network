@@ -1,0 +1,25 @@
+docker run -d -i -t --name server --net=none benhall/iperf sh
+docker run -d -i -t --name client --net=none benhall/iperf sh
+SID=$(docker inspect -f '{{.State.Pid}}' server)
+CID=$(docker inspect -f '{{.State.Pid}}' client)
+sudo mkdir -p /var/run/netns
+sudo ln -s /proc/$SID/ns/net /var/run/netns/$SID
+sudo ln -s /proc/$CID/ns/net /var/run/netns/$CID
+
+sudo ip link add A type veth peer name B
+
+sudo ip link set A netns $SID
+sudo ip netns exec $SID ip addr add 10.1.1.1/32 dev A
+sudo ip netns exec $SID ip link set A up
+sudo ip netns exec $SID ip route add 10.1.1.2/32 dev A
+
+sudo ip link set B netns $CID
+sudo ip netns exec $CID ip addr add 10.1.1.2/32 dev B
+sudo ip netns exec $CID ip link set B up
+sudo ip netns exec $CID ip route add 10.1.1.1/32 dev B
+
+docker attach server
+iperf -s
+
+docker attach client
+iperf -c 10.1.1.1

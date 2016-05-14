@@ -1,0 +1,13 @@
+# Need Multi-hosts or try Katacoda
+# sudo curl -L git.io/weave -o /usr/local/bin/weave
+# sudo chmod +x /usr/local/bin/weave
+
+# Host 1
+weave launch
+$(weave env)
+docker run -it --name iperf benhall/iperf iperf -s
+
+
+# Host 2
+weave launch <IP Host 1>
+docker run -it --link iperf:server benhall/iperf iperf -c iperf
