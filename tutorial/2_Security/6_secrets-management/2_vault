@@ -1,0 +1,36 @@
+# https://www.katacoda.com/courses/docker-production/vault-secrets
+
+cat vault.hcl
+backend "consul" {
+  address = "consul:8500"
+  advertise_addr = "consul:8300"
+  scheme = "http"
+}
+listener "tcp" {
+  address = "0.0.0.0:8200"
+  tls_disable = 1
+}
+disable_mlock = true
+
+docker run -d --name consul \
+     -p 8500:8500 \
+    consul:v0.6.4 \
+    agent -dev -client=0.0.0.0
+
+docker run -d --name vault-dev \
+  --link consul:consul \
+  -p 8200:8200 \
+  --volumes-from config \
+  cgswong/vault:latest server -config=/config/vault.hcl
+
+
+Investigate:
+vault init
+
+vault unseal
+
+vault auth
+
+vault write
+
+vault read
