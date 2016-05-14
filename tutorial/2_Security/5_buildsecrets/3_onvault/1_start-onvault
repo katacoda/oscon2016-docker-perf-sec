@@ -1,0 +1,4 @@
+# https://github.com/dockito/vault
+# OnVault allows you to share local files via HTTP for docker builds
+
+docker run -p 172.17.0.1:14242:3000 -v ~/.ssh:/vault/.ssh dockito/vault
