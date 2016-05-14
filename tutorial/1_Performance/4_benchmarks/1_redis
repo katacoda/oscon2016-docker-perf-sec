@@ -1,17 +1,36 @@
-apt-get install redis-server -y
-docker pull redis:2.8
+# Redis in one container, CLI in another (like a web-app)
+# Use Docker exec to test localhost within a container
 
+
+# Install on host...
+# OSX == brew install redis
+# OSX == redis-server /usr/local/etc/redis.conf
+# Ubuntu === apt-get install redis-server -y
+
+# Run redis-benchmark
 redis-benchmark -h localhost -t ping,set,get -n 10000 --csv
 
+
+# Container > Host
 docker run -p 6379:6379 redis:2.8
-redis-benchmark -h localhost -t ping,set,get -n 10000 --csv
+redis-benchmark -h 192.168.99.100 -t ping,set,get -n 10000 --csv
 
 
+# Host Networking
 docker run --net=host redis:2.8
-redis-benchmark -h localhost -t ping,set,get -n 10000 --csv
+docker run --net=host redis:2.8 redis-benchmark -h localhost -t ping,set,get -n 10000 --csv
 
+# What about links?
+docker run -d --name redis redis:2.8
 docker run -it --link redis:redis redis:2.8 bash
+redis-benchmark -h redis -t ping,set,get -n 10000 --csv
 
+# Networking?
 docker network create redis
-docker run --name redis --net=redis redis:3.2
-docker run -it --net=redis redis:3.2 bash
+docker run -d --name redis --net=redis redis:2.8
+docker run -it --net=redis redis:2.8 bash
+
+# What happens if it's not writing to the volume?
+docker run -d --name redisNoVol benhall/redis:novol
+docker run -it --link redisNoVol:redis benhall/redis:novol bash
+redis-benchmark -h redis -t ping,set,get -n 10000 --csv

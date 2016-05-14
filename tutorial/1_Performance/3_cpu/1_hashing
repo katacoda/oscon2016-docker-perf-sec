@@ -1,1 +1,3 @@
-dd if=/dev/urandom bs=1M count=256 | md5sum
+# https://romanrm.net/dd-benchmark
+
+dd if=/dev/zero bs=1M count=256 | md5sum
