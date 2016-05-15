@@ -7,12 +7,14 @@ On the host, you can do (Caution: boot2docker is not localhost.)
 Docker cient on host network
 > docker run -it --net=host benhall/iperf iperf -c localhost
 
+Docker Port Mapping
+> docker run -d -p 5001:5001 benhall/iperf iperf -s
+> iperf -c localhost
 
 Docker Network
 > docker network create iperf
 > docker run -it --net=iperf --name network-server benhall/iperf iperf -s
-
-> docker run -it --net=iperf benhall/iperf iperf -c server
+> docker run -it --net=iperf benhall/iperf iperf -c network-server
 
 
 Docker Links

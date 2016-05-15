@@ -11,7 +11,9 @@
 redis-benchmark -h localhost -t ping,set,get -n 10000 --csv
 
 
-# Container > Host
+# Container > Host (This will have VBox overhead on b2d)
+# Katacoda.com/ben_hall/scenarios/13 <--- Can install redis on host
+
 docker run -p 6379:6379 redis:2.8
 redis-benchmark -h 192.168.99.100 -t ping,set,get -n 10000 --csv
 
@@ -22,13 +24,17 @@ docker run --net=host redis:2.8 redis-benchmark -h localhost -t ping,set,get -n 
 
 # What about links?
 docker run -d --name redis redis:2.8
-docker run -it --link redis:redis redis:2.8 bash
-redis-benchmark -h redis -t ping,set,get -n 10000 --csv
+docker run -it --link redis:redis redis:2.8 redis-benchmark -h redis -t ping,set,get -n 10000 --csv
 
 # Networking?
 docker network create redis
 docker run -d --name redis --net=redis redis:2.8
-docker run -it --net=redis redis:2.8 bash
+docker run -it --net=redis redis:2.8 redis-benchmark -h redis -t ping,set,get -n 10000 --csv
+
+# Shared Network
+docker network create redis
+docker run -d --name shared-redis redis:2.8
+docker run -it --net=container:shared-redis redis:2.8 redis-benchmark -h localhost -t ping,set,get -n 10000 --csv
 
 # What happens if it's not writing to the volume?
 docker run -d --name redisNoVol benhall/redis:novol
