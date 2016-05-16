@@ -1,8 +1,19 @@
 # Disable userland via "--userland-proxy=false" at the Daemon Level
+
+# OSX
 # docker-machine ssh default
 # sudo su
 # cp /var/lib/boot2docker/profile /var/lib/boot2docker/profile.bak
 # echo "EXTRA_ARGS=\"--userland-proxy=false\"" >> /var/lib/boot2docker/profile
 # sudo /etc/init.d/docker restart
+
+# Ubuntu 14.04
+# Add to /etc/default/docker
+# service docker restart
+
+# Ubuntu 15 >
+# Add to systemd
+# systemctl status docker
+
 
 # To remove last line, use sed -i '$ d' /var/lib/boot2docker/profile
