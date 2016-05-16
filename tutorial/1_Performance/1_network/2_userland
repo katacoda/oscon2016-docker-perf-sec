@@ -4,3 +4,5 @@
 # cp /var/lib/boot2docker/profile /var/lib/boot2docker/profile.bak
 # echo "EXTRA_ARGS=\"--userland-proxy=false\"" >> /var/lib/boot2docker/profile
 # sudo /etc/init.d/docker restart
+
+# To remove last line, use sed -i '$ d' /var/lib/boot2docker/profile
