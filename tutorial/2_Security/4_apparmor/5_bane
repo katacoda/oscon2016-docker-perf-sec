@@ -1,0 +1,4 @@
+# Use Katacoda or Digital Ocean
+# https://github.com/jfrazelle/bane
+
+sudo bane nginx-apparmor.toml

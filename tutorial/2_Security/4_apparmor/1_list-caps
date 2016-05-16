@@ -1,0 +1,23 @@
+# All Linux Capabilities
+docker run -it --privileged ubuntu bash
+capsh --print
+
+# Default Dropped
+# CAP_AUDIT_WRITE = Audit log write access
+# CAP_AUDIT_CONTROL = Configure Linux Audit subsystem
+# CAP_MAC_OVERRIDE = Override kernel MAC policy
+# CAP_MAC_ADMIN = Configure kernel MAC policy
+# CAP_NET_ADMIN = Configure networking
+# CAP_SETPCAP = Process capabilities
+# CAP_SYS_MODULE = Insert and remove kernel modules
+# CAP_SYS_NICE = Priority of processes
+# CAP_SYS_PACCT = Process accounting
+# CAP_SYS_RAWIO = Modify kernel memory
+# CAP_SYS_RESOURCE = Resource Limits
+# CAP_SYS_TIME = System clock alteration
+# CAP_SYS_TTY_CONFIG = Configure tty devices
+# CAP_SYSLOG = Kernel syslogging (printk)
+# CAP_SYS_ADMIN = All others
+
+docker run --rm -it benhall/strace-ubuntu bash
+capsh --print

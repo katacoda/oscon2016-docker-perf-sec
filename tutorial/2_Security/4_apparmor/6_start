@@ -1,0 +1,7 @@
+docker run -d --security-opt="apparmor:docker-nginx-sample" -p 80:80 nginx
+docker run --security-opt="apparmor:docker-nginx-sample" --rm -it nginx bash
+ping 8.8.8.8
+top
+touch ~/thing
+sh
+dash

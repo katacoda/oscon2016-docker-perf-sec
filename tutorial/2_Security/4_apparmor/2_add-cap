@@ -1,0 +1,4 @@
+# strace is restricted by secomp and capabilities
+
+docker run --cap-add SYS_PTRACE --rm -it benhall/strace-ubuntu bash
+capsh --print

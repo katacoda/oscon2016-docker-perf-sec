@@ -1,0 +1,7 @@
+AppArmor can be difficult to understand. Here are some useful links:
+
+https://docs.docker.com/engine/security/apparmor
+
+https://www.suse.com/documentation/sled11/singlehtml/apparmor_quickstart/apparmor_quickstart.html
+
+https://wiki.ubuntu.com/SecurityTeam/KnowledgeBase/AppArmorProfiles
