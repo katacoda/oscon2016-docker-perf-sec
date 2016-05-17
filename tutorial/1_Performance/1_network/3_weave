@@ -1,3 +1,5 @@
+# Try on Katacoda https://www.katacoda.com/courses/docker-performance
+
 # Need Multi-hosts or try Katacoda
 # sudo curl -L git.io/weave -o /usr/local/bin/weave
 # sudo chmod +x /usr/local/bin/weave
