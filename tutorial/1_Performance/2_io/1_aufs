@@ -15,6 +15,6 @@ dd if=/dev/zero of=/data-notmapped/largefile bs=1M count=1024
 
 READ SPEED
 
-dd if=/data/large of=/dev/null bs=4k
-dd if=/data-mapped/large of=/dev/null bs=4k
-dd if=/data-notmapped/large of=/dev/null bs=4k
+dd if=/data/largefile of=/dev/null bs=4k
+dd if=/data-mapped/largefile of=/dev/null bs=4k
+dd if=/data-notmapped/largefile of=/dev/null bs=4k
