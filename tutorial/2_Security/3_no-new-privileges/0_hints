@@ -8,3 +8,10 @@
 # Can you use strace to block it?
 
 # Can 1.11 protect it with no-new-privileges ?
+
+
+docker build -f 1_Dockerfile -t new-priv-1 .
+docker run new-priv-1
+
+docker build -f 2_Dockerfile -t new-priv-2 .
+docker run new-priv-2

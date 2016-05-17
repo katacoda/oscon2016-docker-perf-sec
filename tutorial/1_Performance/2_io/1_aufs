@@ -1,3 +1,4 @@
+# docker build -f docker-images/io-perf/Dockerfile docker-images/io-perf
 # Ensure your daemon is running via AUFS
 # docker info
   # Storage Driver: aufs
