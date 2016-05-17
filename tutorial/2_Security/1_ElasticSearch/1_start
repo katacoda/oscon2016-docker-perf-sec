@@ -1,1 +1,3 @@
-docker run -d -p 9200:9200 --name es benhall/elasticsearch:1.4.2 
+# Try on Katacoda at https://www.katacoda.com/courses/docker-security/elasticsearch-exploit
+
+docker run -d -p 9200:9200 --name es benhall/elasticsearch:1.4.2

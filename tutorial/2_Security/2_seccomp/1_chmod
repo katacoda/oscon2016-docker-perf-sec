@@ -1,3 +1,5 @@
+# Try on https://www.katacoda.com/courses/docker-security/intro-to-seccomp
+
 docker run --rm -it --security-opt seccomp:1_chmod.json benhall/strace-ubuntu chmod 400 /etc/hostname
 
 docker run --rm -it --security-opt seccomp:1_chmod.json benhall/strace chmod 400 /etc/hostname

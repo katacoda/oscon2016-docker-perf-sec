@@ -1,3 +1,5 @@
+# Try on Katacoda https://www.katacoda.com/courses/docker-security/no-new-privileges
+
 # https://github.com/docker/docker/pull/20727
 
 # Build the containers and run the exe. What do you expect to happen?
@@ -11,7 +13,9 @@
 
 
 docker build -f 1_Dockerfile -t new-priv-1 .
-docker run new-priv-1
+docker run -u 1000 new-priv-1
 
 docker build -f 2_Dockerfile -t new-priv-2 .
 docker run new-priv-2
+
+What happens when you add --security-opt=no-new-privileges ?
