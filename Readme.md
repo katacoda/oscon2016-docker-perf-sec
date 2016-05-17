@@ -13,3 +13,10 @@ There is a local file server with the Docker images available. This will be much
 Download them from http://172.16.0.20/oscon/HallBen/
 
 Use `docker load --input <tar name>` to import the file
+
+## Katacoda
+Some of the scenarios are on Katacoda. More will come after OSCON
+
+Performance https://www.katacoda.com/courses/docker-performance/
+
+Security https://www.katacoda.com/courses/docker-security/
