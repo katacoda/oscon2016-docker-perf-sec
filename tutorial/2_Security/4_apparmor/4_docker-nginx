@@ -1,5 +1,5 @@
 # Load The profile
-sudo apparmor_parser -r -W nginx-profile
+sudo apparmor_parser -r -W docker-nginx
 
 # run with profile
-docker run --security-opt "apparmor=nginx-profile" -p 80:80 -d --name apparmor-nginx nginx
+docker run --security-opt "apparmor=docker-nginx" -p 80:80 -d --name apparmor-nginx nginx
