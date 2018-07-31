@@ -1,4 +1,3 @@
-[root@dhcp-16-129 dockerfiles]# cat testnnp.c
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/types.h>
